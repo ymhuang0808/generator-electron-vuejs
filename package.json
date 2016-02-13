@@ -19,11 +19,16 @@
     "generators"
   ],
   "scripts": {
-    "babel-compile": "babel src -d .",
-    "prepublish": "npm run babel-compile",
-    "build": "npm run babel-compile"
+    "prepublish": "gulp clean:scripts ; gulp scripts"
   },
   "dependencies": {
+    "babel": "^6.5.1",
+    "babel-plugin-lodash": "^2.0.1",
+    "lodash-es": "^4.3.0",
+    "systemjs": "^0.19.20",
+    "systemjs-plugin-json": "^0.1.0",
+    "traceur": "0.0.102",
+    "typescript": "^1.7.5",
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
@@ -46,13 +51,11 @@
     "gulp-jasmine": "^2.2.1",
     "gulp-jsx-coverage": "^0.3.8",
     "gulp-load-plugins": "^1.2.0",
-    "gulp-mocha": "^2.0.0",
     "gulp-nsp": "^2.3.0",
     "gulp-plumber": "^1.0.0",
-    "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "jasmine": "^2.4.1",
+    "jasmine-es6": "^0.1.4",
     "run-sequence": "^1.1.5"
   },
   "eslintConfig": {
