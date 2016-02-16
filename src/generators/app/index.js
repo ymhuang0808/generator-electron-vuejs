@@ -2,7 +2,7 @@
 
 import { Base } from 'yeoman-generator'
 
-export default class EVGenerator extends Base {
+class EVGenerator extends Base {
   get prompting() {
     return {
       appName() {
@@ -23,3 +23,5 @@ export default class EVGenerator extends Base {
     }
   }
 }
+
+module.exports = EVGenerator

@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/ymhuang0808/generator-electron-vuejs#readme",
   "files": [
-    "generators"
+    "generators/app"
   ],
   "scripts": {
     "prepublish": "gulp clean:scripts ; gulp scripts"
