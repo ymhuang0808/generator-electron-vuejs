@@ -1,5 +1,5 @@
 # Babel compiled files
-generators/
+/generators/
 
 # Logs
 logs
