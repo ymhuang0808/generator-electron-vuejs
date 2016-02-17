@@ -57,15 +57,17 @@ describe('Prompt answer action', () => {
   let packages
   let answers
 
-  beforeAll(() => {
+  beforeAll((done) => {
     answers = {
       vuejsPlugin: [
         { key: "vueResource", module: "vue-resource" },
         { key: "vueRouter", module: "vue-router" }
       ]
     }
-    mockGenerator = helpers.createGenerator('electron-vuejs:app', [ path.join(__dirname, '../../../../generators/app') ])
+    mockGenerator = helpers.createGenerator('electron-vuejs:app',
+      [ path.join(__dirname, '../../../../generators/app') ])
     helpers.mockPrompt(mockGenerator, answers)
+    done()
     questions = [
       {
         type: "checkbox",
@@ -98,9 +100,10 @@ describe('Prompt answer action', () => {
     packages = jasmine.createSpyObj('packages', ['set'])
   })
 
-  it('should set in packagesMap', () => {
+  it('should set in packagesMap', (done) => {
     let prompts = new Prompts(mockGenerator, questions, packages)
     prompts.askVuejsPlugin()
+    done()
     expect(packages.set).toHaveBeenCalledWith('vuejsPlugin', answers)
   })
 })
