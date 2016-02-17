@@ -13,32 +13,31 @@ const $ = gulpLoadPlugins({
 })
 
 // Lint JavaScript
-gulp.task('lint', () =>
-  gulp.src('./src/**/*.js')
-    .pipe($.eslint())
-    .pipe($.eslint.format())
-    .pipe($.eslint.failOnError())
+gulp.task('lint', () => gulp.src('./src/**/*.js')
+  .pipe($.eslint())
+  .pipe($.eslint.format())
+  .pipe($.eslint.failOnError())
 )
 
 // Coverage
 gulp.task('coverage', () => {
   let options = {
-      istanbul: {
-        preserveComments: true,
-        coverageVariable: '__MY_TEST_COVERAGE__',
-        exclude: /node_modules/
-      },
-      transpile: {
-        babel: {
-          include: /\.js?$/,
-          exclude: /node_modules/,
-          omitExt: false
-        }
-      },
-      coverage: {
-        reporters: ['text-summary', 'json', 'lcov'],
-        directory: 'coverage'
+    istanbul: {
+      preserveComments: true,
+      coverageVariable: '__MY_TEST_COVERAGE__',
+      exclude: /node_modules/
+    },
+    transpile: {
+      babel: {
+        include: /\.js?$/,
+        exclude: /node_modules/,
+        omitExt: false
       }
+    },
+    coverage: {
+      reporters: ['text-summary', 'json', 'lcov'],
+      directory: 'coverage'
+    }
   }
 
   $.jsxCoverage.initModuleLoaderHack(options)
@@ -47,24 +46,36 @@ gulp.task('coverage', () => {
     .pipe($.excludeGitignore())
     .pipe($.jasmine())
     .on('end', $.jsxCoverage.collectIstanbulCoverage(options))
-  }
+}
 )
 
 // Babel transformation
-gulp.task('scripts', () =>
-  gulp.src('./src/**/*.js')
-    .pipe($.changed('./generators'))
-    .pipe($.excludeGitignore())
-    .pipe($.babel())
-    .pipe(gulp.dest('.'))
+gulp.task('scripts', () => gulp.src('./src/**/*.js')
+  .pipe($.changed('./generators'))
+  .pipe($.excludeGitignore())
+  .pipe($.babel())
+  .pipe(gulp.dest('.'))
 )
 
+// gulp.task('scripts', () => gulp.src('./spec/**/*.js')
+//   .pipe($.changed('./spec'))
+// )
 
 // Clean scripts
-gulp.task('clean:scripts', () =>
-  del('./generators').then(paths =>
-    $.util.log('Clean ./generators directory')
-  )
+gulp.task('clean:scripts', () => del('./generators').then(paths => $.util.log('Clean ./generators directory')
 )
+)
+
+// Unit testing
+gulp.task('jasmine', () => {
+  return gulp.src('./spec/**/*.js')
+    .pipe($.jasmine())
+})
+
+// Watch unit testing
+// @TODO: ES6 issue
+gulp.task('watch:jasmine', () => {
+  gulp.watch(['./src/**/*.js', './spec/**/*.js'], ['jasmine'])
+})
 
 gulp.task('build', ['clean:scripts', 'lint', 'scripts'])

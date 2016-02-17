@@ -20,7 +20,7 @@ describe('Prompts actions', () => {
 
   it('should ask Vue.js plugins', () => {
     let prompts = new Prompts(mockGenerator, questions, packages)
-    prompts.askVuejsPlugin()
+    prompts.askQuestions('vuejsPlugin')
     expect(mockGenerator.prompt).toHaveBeenCalledWith(questions[0], jasmine.any(Function))
   })
 })

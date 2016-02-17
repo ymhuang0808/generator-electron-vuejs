@@ -24,7 +24,7 @@ export default class Prompts {
 
   askQuestions(name) {
     let index = _.findIndex(questionsList, {
-      'name': name
+      'name': name // property name in questions.js
     })
 
     if (index != -1) {
