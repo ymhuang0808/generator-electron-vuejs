@@ -64,7 +64,7 @@ describe('Prompt answer action', () => {
         { key: "vueRouter", module: "vue-router" }
       ]
     }
-    mockGenerator = helpers.createGenerator('electron-vuejs:app', [ '../../../../generators/app' ])
+    mockGenerator = helpers.createGenerator('electron-vuejs:app', [ path.join(__dirname, '../../../../generators/app') ])
     helpers.mockPrompt(mockGenerator, answers)
     questions = [
       {
