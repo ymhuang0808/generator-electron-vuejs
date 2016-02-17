@@ -1,9 +1,7 @@
-import install from 'jasmine-es6'
 import helpers from 'yeoman-test'
 import path from 'path'
 import Prompts from '../../../../src/generators/app/src/prompts'
 import mockQuestions from '../../../mocks/questions'
-install()
 
 // Get mock data
 let questions = mockQuestions()
