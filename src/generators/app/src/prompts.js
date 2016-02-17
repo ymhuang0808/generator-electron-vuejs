@@ -22,16 +22,15 @@ export default class Prompts {
     packagesMap = packages
   }
 
-  askVuejsPlugin() {
-    let index = _.findIndex(questionsList, { 'name': 'vuejsPlugin' })
+  askQuestions(name) {
+    let index = _.findIndex(questionsList, {
+      'name': name
+    })
 
     if (index != -1) {
-      let vuejsPluginQuestion = questionsList[index]
-      generator.prompt(vuejsPluginQuestion, (answers) => {
-        // Object.keys(answers).forEach((element, index) => {
-        //   packagesMap.set(index, element)
-        // })
-        packagesMap.set('vuejsPlugin', answers.vuejsPlugin)
+      let question = questionsList[index]
+      generator.prompt(question, (answers) => {
+        packagesMap.set(name, answers[name])
       })
     }
   }

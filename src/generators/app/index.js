@@ -15,7 +15,7 @@ class EVGenerator extends Base {
           }
         ]
 
-        this.prompt(prompt, ({ appName }) => {
+        this.prompt(prompt, ({appName}) => {
           this.options.appName = appName
           done()
         })

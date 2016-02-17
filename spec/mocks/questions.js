@@ -1,4 +1,4 @@
-export default function questions() {
+export default function mockQuestions() {
   return [
     {
       type: 'checkbox',
