@@ -1,5 +1,5 @@
 # generator-electron-vuejs
-A Yeomen generator for Electron and Vue.js with Gulp
+A Yeoman generator for Electron and Vue.js with Gulp
 
 ## Developing features
  * Routing
