@@ -19,7 +19,8 @@
     "generators/app"
   ],
   "scripts": {
-    "prepublish": "gulp clean:scripts ; gulp scripts"
+    "prepublish": "gulp clean:scripts ; gulp scripts",
+    "test": "gulp jasmine"
   },
   "dependencies": {
     "babel": "^6.5.1",
