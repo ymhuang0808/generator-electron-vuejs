@@ -4,7 +4,7 @@
   "description": "A Yeomen generator for Electron and Vue.js with Gulp",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ymhuang0808/generator-electron-vuejs.git"
+    "url": "https://github.com/ymhuang0808/generator-electron-vuejs.git"
   },
   "keywords": [
     "yeomen-generator"
@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/ymhuang0808/generator-electron-vuejs/issues"
   },
-  "homepage": "https://github.com/ymhuang0808/generator-electron-vuejs#readme",
+  "homepage": "https://github.com/ymhuang0808/generator-electron-vuejs",
   "files": [
     "generators/app"
   ],

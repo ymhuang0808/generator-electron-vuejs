@@ -58,10 +58,6 @@ gulp.task('scripts', () => gulp.src('./src/**/*.js')
   .pipe(gulp.dest('.'))
 )
 
-// gulp.task('scripts', () => gulp.src('./spec/**/*.js')
-//   .pipe($.changed('./spec'))
-// )
-
 // Clean scripts
 gulp.task('clean:scripts', () => del('./generators').then(paths => $.util.log('Clean ./generators directory')
 )

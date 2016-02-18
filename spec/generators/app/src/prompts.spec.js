@@ -8,7 +8,7 @@ import mockQuestions from '../../../mocks/questions'
 let questions = mockQuestions()
 
 describe('Prompts actions', () => {
-  // Mock generator for Prompts dependency injection
+  // Mock generator for Prompts dependency injection (DI)
   let mockGenerator
   let packages
 
@@ -25,7 +25,7 @@ describe('Prompts actions', () => {
 })
 
 describe('Prompt ask questions', () => {
-  // Mock generator for Prompts dependency injection
+  // Mock generator for Prompts dependency injection (DI)
   let mockGenerator
   let packages
   let answers
@@ -46,6 +46,8 @@ describe('Prompt ask questions', () => {
     mockGenerator = helpers.createGenerator('electron-vuejs:app',
       [path.join(__dirname, '../../../../generators/app')])
     helpers.mockPrompt(mockGenerator, answers)
+
+    // Create a mock object for DI
     packages = jasmine.createSpyObj('packages', ['set'])
     done() // async
   })
