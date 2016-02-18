@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import helpers from 'yeoman-test'
 import path from 'path'
 import Prompts from '../../../../src/generators/app/src/prompts'
@@ -45,8 +46,8 @@ describe('Prompt ask questions', () => {
     mockGenerator = helpers.createGenerator('electron-vuejs:app',
       [path.join(__dirname, '../../../../generators/app')])
     helpers.mockPrompt(mockGenerator, answers)
-    done() // async
     packages = jasmine.createSpyObj('packages', ['set'])
+    done() // async
   })
 
   it('should set in packagesMap', done => {

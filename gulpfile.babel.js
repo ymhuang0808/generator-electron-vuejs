@@ -1,5 +1,6 @@
 'use strict'
 
+import 'babel-core/register'
 import path from 'path'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
@@ -68,14 +69,13 @@ gulp.task('clean:scripts', () => del('./generators').then(paths => $.util.log('C
 
 // Unit testing
 gulp.task('jasmine', () => {
-  return gulp.src('./spec/**/*.js')
+  gulp.src('./spec/**/*.js')
     .pipe($.jasmine())
 })
 
 // Watch unit testing
-// @TODO: ES6 issue
 gulp.task('watch:jasmine', () => {
   gulp.watch(['./src/**/*.js', './spec/**/*.js'], ['jasmine'])
 })
 
-gulp.task('build', ['clean:scripts', 'lint', 'scripts'])
+gulp.task('build', ['lint', 'jasmine', 'clean:scripts', 'scripts'])
