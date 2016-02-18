@@ -1,4 +1,6 @@
-# generator-electron-vuejs
+
+
+# generator-electron-vuejs [![Build Status](https://travis-ci.org/ymhuang0808/generator-electron-vuejs.svg?branch=develop)](https://travis-ci.org/ymhuang0808/generator-electron-vuejs)
 A Yeoman generator for Electron and Vue.js with Gulp (Still DEVELOPING)
 
 ## Developing features
