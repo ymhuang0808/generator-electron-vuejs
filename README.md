@@ -1,5 +1,5 @@
 # generator-electron-vuejs
-A Yeoman generator for Electron and Vue.js with Gulp
+A Yeoman generator for Electron and Vue.js with Gulp (Still DEVELOPING)
 
 ## Developing features
  * Routing
@@ -10,3 +10,7 @@ A Yeoman generator for Electron and Vue.js with Gulp
  * Live reload
  * Support SASS
  * Vue.js component generator (?)
+
+
+## License
+MIT
