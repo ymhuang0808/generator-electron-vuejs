@@ -1,6 +1,16 @@
 export default function questions() {
   return [
     {
+      type: 'input',
+      name: 'appName',
+      message: 'Enter a name for your app:'
+    },
+    {
+      type: 'confirm',
+      name: 'loadStoredConfig',
+      message: 'Would you like to use stored configuration?'
+    },
+    {
       type: 'checkbox',
       name: 'vuejsPlugin',
       message: 'What Vue.js plugins would you like to have?',
@@ -26,7 +36,8 @@ export default function questions() {
           },
           name: 'vue-router is a offical router for Vue.js 0.12+'
         }
-      ]
+      ],
+      store: true
     },
     {
       type: 'list',
@@ -54,7 +65,8 @@ export default function questions() {
           },
           name: 'I don\'t need any UI components.'
         }
-      ]
+      ],
+      store: true
     },
     {
       type: 'list',
@@ -75,7 +87,11 @@ export default function questions() {
           },
           name: 'VueBoot is a project designed to ease the use of Bootstrap (v4) in VueJS applications.'
         }
-      ]
+      ],
+      when: (answers) => {
+        return isUiSelected(answers, 'bootstrap')
+      },
+      store: true
     },
     {
       type: 'list',
@@ -89,7 +105,11 @@ export default function questions() {
           },
           name: 'Vue MDL is a set of reusable Material Design Lite(mdl) components.'
         }
-      ]
+      ],
+      when: (answers) => {
+        return isUiSelected(answers, 'materialDesignLite')
+      },
+      store: true
     },
     {
       type: 'list',
@@ -120,7 +140,8 @@ export default function questions() {
           },
           name: 'I only need CSS.'
         }
-      ]
+      ],
+      store: true
     },
     {
       type: 'list',
@@ -145,7 +166,34 @@ export default function questions() {
           },
           name: 'I don\'t need any JavaScript pre-processor.'
         }
-      ]
+      ],
+      store: true
+    },
+    {
+      tpye: 'list',
+      name: 'jsIdentation',
+      message: 'Choose tabs or spaces for identation',
+      choices: [
+        {
+          value: {
+            key: 'tabs'
+          },
+          name: 'Tabs for identation'
+        },
+        {
+          value: {
+            key: 'spaces'
+          },
+          name: 'Spaces for identation'
+        }
+      ],
+      store: true
     }
   ]
+}
+
+function isUiSelected(answers, name) {
+  let selected = answers.ui.key
+
+  return selected === name
 }

@@ -2,37 +2,49 @@
 
 import 'babel-polyfill'
 import _ from 'lodash'
+import chalk from 'chalk'
+import yosay from 'yosay'
 
-// Constants
-const PROMPT_NAME_VUEJS_PLUGIN = 'vuejsPlugin'
-const PROMPT_NAME_UI = 'ui'
-const PROMPT_NAME_BOOTSTRAP = 'bootstrapCompoents'
-const PROMPT_NAME_MDL = 'mdlComponents'
-const PROMPT_NAME_CSS_PREPRO = 'cssPreprocessor'
-const PROMPT_NAME_JS_PREPRO = 'jsPreprocessor'
-
-let generator
-let questionsList
-let packagesMap
+let _generator
+let answersList
 
 export default class Prompts {
 
-  constructor(evGenerator, questions, packages) {
-    generator = evGenerator
-    questionsList = questions
-    packagesMap = packages
+  constructor(evGenerator) {
+    _generator = evGenerator
   }
 
-  askQuestions(name) {
-    let index = _.findIndex(questionsList, {
-      'name': name // property name in questions.js
+  welcomeMsg() {
+    _generator.log(yosay(
+      `Welcome to ` +
+      `${chalk.red('Electron-Vuejs')} generator`))
+  }
+
+  setQuenstions(questions) {
+    this.questionsList = questions
+
+    return this;
+  }
+
+  removeQuestion(name) {
+    this.questionsList = this.questionsList.filter(value => {
+      return value.name !== name
     })
 
-    if (index != -1) {
-      let question = questionsList[index]
-      generator.prompt(question, (answers) => {
-        packagesMap.set(name, answers[name])
-      })
-    }
+    return this
+  }
+
+  askQuestions() {
+    let done = _generator.async()
+    _generator.prompt(this.questionsList, answers => {
+      answersList = answers
+      done()
+    })
+
+    return this
+  }
+
+  getAnswers() {
+    return answersList
   }
 }

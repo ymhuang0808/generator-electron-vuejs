@@ -13,14 +13,19 @@ describe('Prompts actions', () => {
   let packages
 
   beforeAll(() => {
-    mockGenerator = jasmine.createSpyObj('mockGenerator', ['prompt'])
-    packages = new Map()
+    mockGenerator = jasmine.createSpyObj('mockGenerator', ['prompt', 'async'])
   })
 
   it('should ask Vue.js plugins', () => {
-    let prompts = new Prompts(mockGenerator, questions, packages)
-    prompts.askQuestions('vuejsPlugin')
-    expect(mockGenerator.prompt).toHaveBeenCalledWith(questions[0], jasmine.any(Function))
+    let prompts = new Prompts(mockGenerator)
+    prompts.setQuenstions(questions).askQuestions()
+    expect(mockGenerator.prompt).toHaveBeenCalledWith(questions, jasmine.any(Function))
+  })
+
+  it('should remove the element with loadStoredConfig', () => {
+    let prompts = new Prompts(mockGenerator)
+    let questionsList = prompts.setQuenstions(questions).removeQuestion('ui').questionsList
+    expect(questionsList).not.toContain(questions[1])
   })
 })
 
@@ -47,15 +52,13 @@ describe('Prompt ask questions', () => {
       [path.join(__dirname, '../../../../generators/app')])
     helpers.mockPrompt(mockGenerator, answers)
 
-    // Create a mock object for DI
-    packages = jasmine.createSpyObj('packages', ['set'])
     done() // async
   })
 
-  it('should set in packagesMap', done => {
-    let prompts = new Prompts(mockGenerator, questions, packages)
-    prompts.askQuestions('vuejsPlugin')
+  it('should get answers', done => {
+    let prompts = new Prompts(mockGenerator)
+    prompts.setQuenstions(questions, packages).askQuestions('vuejsPlugin')
     done() // async
-    expect(packages.set).toHaveBeenCalledWith('vuejsPlugin', answers)
+    expect(prompts.getAnswers()).toEqual(answers)
   })
 })

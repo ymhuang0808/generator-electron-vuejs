@@ -63,6 +63,11 @@ gulp.task('clean:scripts', () => del('./generators').then(paths => $.util.log('C
 )
 )
 
+// Watch babel transformation
+gulp.task('watch:scripts', () => {
+  gulp.watch(['./src/**/*.js'], ['scripts'])
+})
+
 // Unit testing
 gulp.task('jasmine', () => {
   gulp.src('./spec/**/*.js')
